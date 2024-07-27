@@ -18,7 +18,7 @@ function Resmenu() {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.61450&lng=77.30630&restaurantId=${id}`
+          `https://cors-anywhere.herokuapp.com/https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.61450&lng=77.30630&restaurantId=${id}`
         );
         const json = await response.json();
         setMenu(json);
