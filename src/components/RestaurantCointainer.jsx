@@ -7,7 +7,7 @@ function RestaurantContainer() {
   const [rest, Setrest] = useState([]);
   const [srch, Setsrch] = useState("");
   const [another_list, setanother_list] = useState([]);
-  console.log(rest);
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -19,7 +19,7 @@ function RestaurantContainer() {
   const fetchData = async () => {
     try {
       const data = await fetch(
-        "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.61450&lng=77.30630&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+        "https://cors-anywhere.herokuapp.com/https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.61450&lng=77.30630&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
       );
       const json = await data.json();
       const restaurants =
