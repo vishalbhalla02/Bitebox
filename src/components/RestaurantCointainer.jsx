@@ -19,11 +19,14 @@ function RestaurantContainer() {
   const fetchData = async () => {
     try {
       const data = await fetch(
-        "https://cors-anywhere.herokuapp.com/https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.61450&lng=77.30630&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+        "https://thingproxy.freeboard.io/fetch/https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.61450&lng=77.30630&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
       );
       const json = await data.json();
       const restaurants =
-        json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants;
+        json.data.cards[1]?.card?.card?.gridElements?.infoWithStyle
+          ?.restaurants ||
+        json.data.cards[2]?.card?.card?.gridElements?.infoWithStyle
+          ?.restaurants;
       Setrest(restaurants);
       setanother_list(restaurants);
     } catch (err) {
