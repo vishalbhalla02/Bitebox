@@ -15,7 +15,7 @@ function About() {
       </div>
       <footer className="bg-gray-200 w-full absolute bottom-0">
         <div className="m-auto w-64 ">
-          <span>Created by ♥ React/span>
+          <span>Created by ♥ React</span>
         </div>
       </footer>
     </div>
