@@ -33,35 +33,39 @@ function Resmenu() {
     fetchData();
   }, [id]);
 
-  // If nothing is there, reload icon
   if (!menu) {
     return (
-      <h1>
+      <div className="mt-16 sm:mt-[7em] flex justify-center items-center">
         <Reload />
-      </h1>
+      </div>
     );
   }
 
   return (
     <div className="mt-16 sm:mt-[7em]">
-      <div className="bg-slate-100 m-auto max-w-screen-md sm:w-4/5 rounded-lg p-2 sm:px-4 flex justify-between">
+      {/* Restaurant Info */}
+      <div className="bg-slate-100 m-auto max-w-screen-md sm:w-4/5 rounded-lg p-2 sm:px-4 flex justify-between animate-fade-in">
         <div className="flex flex-col justify-evenly">
-          <h1 className="text-2xl sm:text-4xl">{restaurantInfo.name}</h1>
-          <h3>{restaurantInfo.cuisines?.join(" ")}</h3>
-          <div className="flex items-center font-semibold gap-6 sm:gap-7">
+          <h1 className="text-2xl sm:text-4xl font-semibold">
+            {restaurantInfo.name || "Restaurant Name"}
+          </h1>
+          <h3 className="text-sm sm:text-base text-gray-700">
+            {restaurantInfo.cuisines?.join(", ") || "Cuisine info"}
+          </h3>
+          <div className="flex items-center font-semibold gap-6 sm:gap-7 mt-2">
             <div className="flex gap-1 items-center">
               <h3 className="text-sm sm:text-base">
-                {restaurantInfo.avgRating}
+                {restaurantInfo.avgRating ?? "--"}
               </h3>
               <img className="h-5" src={img1} alt="Rating star" />
             </div>
             <div>
-              <h3 className="text-xs sm:text-base">
-                {restaurantInfo.costForTwoMessage}
+              <h3 className="text-xs sm:text-base text-gray-600">
+                {restaurantInfo.costForTwoMessage ?? "--"}
               </h3>
             </div>
             <div
-              className={`px-3 ${
+              className={`px-3 py-1 ${
                 restaurantInfo.availability?.opened
                   ? "bg-green-300"
                   : "bg-red-300"
@@ -73,24 +77,33 @@ function Resmenu() {
             </div>
           </div>
         </div>
-        <div className="p-1 flex justify-center items-center">
+        <div className="p-1 flex justify-center items-center transition-all">
           <img
             className="w-full block h-full min-w-[100px] max-w-40 rounded-lg"
             src={
-              "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" +
               restaurantInfo.cloudinaryImageId
+                ? `https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/${restaurantInfo.cloudinaryImageId}`
+                : "https://via.placeholder.com/150" // fallback image
             }
             alt={restaurantInfo.name}
           />
         </div>
       </div>
-      <div>
-        {cards.map((e, index) => {
-          if (e.card.card.itemCards) {
-            return <Slider key={index} data={e.card.card} />;
-          }
-          return null;
-        })}
+
+      {/* Menu Cards */}
+      <div className="mt-6">
+        {cards.filter((card) => card.card.card.itemCards).length > 0 ? (
+          cards.map((e, index) => {
+            if (e.card.card.itemCards) {
+              return <Slider key={index} data={e.card.card} />;
+            }
+            return null;
+          })
+        ) : (
+          <div className="text-center text-lg text-gray-600 mt-10">
+            No menu items available.
+          </div>
+        )}
       </div>
     </div>
   );

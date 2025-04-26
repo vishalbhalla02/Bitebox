@@ -12,6 +12,19 @@ function Cart() {
     dispatch(clearCart());
   };
 
+  // Group items by id and count quantities
+  const groupedItems = cartItems.reduce((acc, item) => {
+    const itemId = item.card.info.id;
+    if (acc[itemId]) {
+      acc[itemId].count += 1;
+    } else {
+      acc[itemId] = { ...item, count: 1 };
+    }
+    return acc;
+  }, {});
+
+  const groupedItemsArray = Object.values(groupedItems);
+
   return (
     <div className="text-center m-auto mt-16 sm:mt-[7.5em]">
       <h1 className="font-bold text-xl sm:text-3xl">Cart</h1>
@@ -21,11 +34,11 @@ function Cart() {
       >
         Clear Cart
       </button>
-      {cartItems.length === 0 ? (
+      {groupedItemsArray.length === 0 ? (
         <h2 className="text-lg sm:text-xl">Cart is empty</h2>
       ) : (
         <div className="max-w-screen-md w-4/5 bg-gray-50 shadow-lg m-auto my-6">
-          <ExpandList items={cartItems} page="Cart" />
+          <ExpandList items={groupedItemsArray} page="Cart" />
         </div>
       )}
       <TotalCart />

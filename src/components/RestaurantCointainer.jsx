@@ -7,6 +7,7 @@ function RestaurantContainer() {
   const [rest, Setrest] = useState([]);
   const [srch, Setsrch] = useState("");
   const [another_list, setanother_list] = useState([]);
+  const [loading, setLoading] = useState(true); // added loading state
 
   useEffect(() => {
     fetchData();
@@ -27,8 +28,9 @@ function RestaurantContainer() {
       Setrest(restaurants);
       setanother_list(restaurants);
     } catch (err) {
-      console.log("Error fetching data:", err);
-      alert("Api issue");
+      alert("Api issue : Try refreshing web");
+    } finally {
+      setLoading(false); // set loading to false after fetch
     }
   };
 
@@ -41,7 +43,7 @@ function RestaurantContainer() {
 
   return (
     <div className="md:mt-[8em] mt-20">
-      <div className="flex justify-center  ">
+      <div className="flex justify-center">
         <input
           className="border-4 border-blue-200 rounded-lg md:text-lg md:w-2/4 w-5/6 px-4 md:mb-4"
           value={srch}
@@ -50,32 +52,34 @@ function RestaurantContainer() {
           placeholder="Search your restaurant here"
         />
       </div>
-      {rest.length === 0 ? (
-        <div className="flex flex-wrap gap-5 m-auto w-4/5 md:my-4 justify-center">
-          <Fakecard />
-          <Fakecard />
-          <Fakecard />
-          <Fakecard />
-          <Fakecard />
-          <Fakecard />
-          <Fakecard />
-          <Fakecard />
-          <Fakecard />
-          <Fakecard />
+
+      {loading ? (
+        <div className="text-center text-xl font-semibold my-6">
+          <div className="flex flex-wrap gap-5 m-auto w-4/5 mt-4 justify-center">
+            {[...Array(10)].map((_, idx) => (
+              <Fakecard key={idx} />
+            ))}
+          </div>
         </div>
       ) : (
         <div className="flex flex-wrap gap-5 m-auto w-4/5 my-4 mb-16 justify-center">
-          {another_list.map((res) => (
-            <Link to={"/restaurants/" + res.info.id} key={res.info.id}>
-              <ResCard
-                name={res.info.name}
-                img_id={res.info.cloudinaryImageId}
-                rating={res.info.avgRating}
-                time={res.info.sla.deliveryTime}
-                areaname={res.info.areaName}
-              />
-            </Link>
-          ))}
+          {another_list.length > 0 ? (
+            another_list.map((res) => (
+              <Link to={"/restaurants/" + res.info.id} key={res.info.id}>
+                <ResCard
+                  name={res.info.name}
+                  img_id={res.info.cloudinaryImageId}
+                  rating={res.info.avgRating}
+                  time={res.info.sla.deliveryTime}
+                  areaname={res.info.areaName}
+                />
+              </Link>
+            ))
+          ) : (
+            <div className="text-center w-full text-lg font-medium mt-10">
+              No restaurants found.
+            </div>
+          )}
         </div>
       )}
     </div>

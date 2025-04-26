@@ -15,18 +15,23 @@ function Header() {
       </div>
       <div className="flex items-center sm:pe-16 sm:ps-4 font-normal">
         <ul className="text-xs sm:text-lg flex items-center gap-x-2 sm:gap-x-5">
-          <li className="hover:text-orange-600">
+          <li className="hover:text-orange-600 transition-colors duration-150">
             <Link to="/">Home</Link>
           </li>
-          <li className="hover:text-orange-600">
+          <li className="hover:text-orange-600 transition-colors duration-150">
             <Link to="/about">About Us</Link>
           </li>
-          <li className="hover:text-orange-600">
+          <li className="hover:text-orange-600 transition-colors duration-150">
             <Link to="/contact">Contact Us</Link>
           </li>
-          <li className="hover:text-orange-600">
+          <li className="hover:text-orange-600 transition-colors duration-150">
             <Link to="/cart">
-              Cart {cartItems.length !== 0 && `(${cartItems.length} items)`}
+              Cart{" "}
+              {cartItems.length !== 0 && (
+                <span className="text-[10px] bg-orange-500 text-white px-1.5 py-0.5 rounded-full ml-1">
+                  {cartItems.length}
+                </span>
+              )}
             </Link>
           </li>
         </ul>
