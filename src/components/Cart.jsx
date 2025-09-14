@@ -1,4 +1,3 @@
-import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ExpandList from "./Expand_list";
 import { clearCart } from "./cartSlice";
@@ -26,10 +25,10 @@ function Cart() {
   const groupedItemsArray = Object.values(groupedItems);
 
   return (
-    <div className="text-center m-auto mt-16 sm:mt-[7.5em]">
-      <h1 className="font-bold text-xl sm:text-3xl">Cart</h1>
+    <div className="m-auto mt-16 text-center sm:mt-[7.5em]">
+      <h1 className="text-xl font-bold sm:text-3xl">Cart</h1>
       <button
-        className="bg-black text-white p-2 rounded-lg m-2 hover:bg-gray-800"
+        className="m-2 rounded-lg bg-black p-2 text-white hover:bg-gray-800"
         onClick={handleClearCart}
       >
         Clear Cart
@@ -37,7 +36,7 @@ function Cart() {
       {groupedItemsArray.length === 0 ? (
         <h2 className="text-lg sm:text-xl">Cart is empty</h2>
       ) : (
-        <div className="max-w-screen-md w-4/5 bg-gray-50 shadow-lg m-auto my-6">
+        <div className="m-auto my-6 w-4/5 max-w-screen-md bg-gray-50 shadow-lg">
           <ExpandList items={groupedItemsArray} page="Cart" />
         </div>
       )}

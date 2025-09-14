@@ -36,10 +36,10 @@ const ExpandList = ({ items, page }) => {
       {renderedItems.map((item) => (
         <div
           key={item.card.info.id}
-          className="border-b border-gray-300 py-4 flex flex-col sm:flex-row justify-between gap-4"
+          className="flex flex-col justify-between gap-1 border-b border-gray-300 pb-2 sm:flex-row"
         >
-          <div className="flex-1 px-2 flex flex-col justify-evenly">
-            <h3 className="font-semibold text-lg">
+          <div className="flex flex-1 flex-col justify-evenly px-2">
+            <h3 className="text-base font-semibold sm:text-lg">
               {item.card.info.name} -{" "}
               <span className={page === "Menu" ? "" : "font-bold"}>
                 ₹
@@ -48,21 +48,21 @@ const ExpandList = ({ items, page }) => {
                   : item.card.info.defaultPrice / 100}
               </span>
             </h3>
-            <p className="text-sm text-slate-600 mt-1">
+            <p className="text-xs text-slate-600 sm:mt-1 sm:text-base">
               {item.card.info.description}
             </p>
           </div>
 
           <div className="flex flex-col items-center">
             <img
-              className="w-[160px] h-[120px] rounded-lg object-cover"
+              className="h-[120px] w-[160px] rounded-lg object-cover"
               src={`https://media-assets.swiggy.com/swiggy/image/upload/${item.card.info.imageId}`}
               alt={item.card.info.name}
             />
 
             {page === "Menu" && (
               <button
-                className="mt-2 px-3 py-1 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition"
+                className="mt-1 rounded-lg bg-orange-500 px-3 py-1 text-white transition hover:bg-orange-600 sm:mt-2"
                 onClick={() => handleAddItem(item)}
                 disabled={buttonDisabled[item.card.info.id]} // Disable the button after clicking
               >
@@ -72,14 +72,14 @@ const ExpandList = ({ items, page }) => {
           </div>
 
           {page === "Cart" && (
-            <div className="flex flex-col justify-center items-center px-2">
+            <div className="flex flex-col items-center justify-center px-2">
               <button
-                className="px-3 py-1 bg-red-600 text-white rounded-lg hover:bg-red-700 transition"
+                className="rounded-lg bg-red-600 px-3 py-1 text-white transition hover:bg-red-700"
                 onClick={() => handleRemoveItem(item.card.info.id)}
               >
                 ❌
               </button>
-              <span className="mt-2 font-bold text-xl">x{item.count}</span>
+              <span className="mt-2 text-xl font-bold">x{item.count}</span>
             </div>
           )}
         </div>

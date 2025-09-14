@@ -10,16 +10,16 @@ function Slider({ data }) {
   };
 
   return (
-    <div className="m-auto max-w-screen-md sm:w-4/5 my-4 bg-gray-50 shadow-lg p-4 rounded-lg transition duration-300">
+    <div className="mx-auto my-1 max-w-4xl rounded-lg p-4 sm:w-[90%] md:w-4/5">
       <div
         onClick={handleClick}
-        className="flex justify-between items-center cursor-pointer hover:text-blue-600"
+        className="flex cursor-pointer items-center justify-between hover:text-blue-600"
       >
-        <span className="font-semibold sm:font-bold text-sm sm:text-lg">
+        <span className="text-xs font-semibold sm:text-lg sm:font-bold">
           {data.title} ({data.itemCards.length})
         </span>
         <img
-          className={`w-5 transition-transform duration-300 ${
+          className={`w-4 transition-transform duration-300 sm:w-5 ${
             showItems ? "rotate-180" : ""
           }`}
           src={img1}

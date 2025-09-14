@@ -1,22 +1,20 @@
-import React from "react";
-
 function Fakecard() {
   return (
-    <div className="shadow-lg rounded-lg w-72 h-96 bg-slate-100 p-4 space-y-4">
-      {/* Fake image */}
-      <div className="bg-gray-300 h-40 w-full rounded-md"></div>
+    <div className="flex w-full max-w-40 animate-pulse flex-col justify-between rounded-xl bg-slate-300 p-4 shadow-lg sm:max-w-60 md:max-w-72">
+      {/* Image placeholder */}
+      <div className="h-40 w-full rounded-lg bg-slate-400 sm:h-48 md:h-56"></div>
 
-      {/* Fake title */}
-      <div className="bg-gray-300 h-5 w-3/4 rounded"></div>
+      {/* Title placeholder */}
+      <div className="mt-2 h-6 w-3/4 rounded bg-slate-400"></div>
 
-      {/* Fake rating/time */}
-      <div className="bg-gray-300 h-4 w-1/2 rounded"></div>
+      {/* Subtitle placeholder */}
+      <div className="mt-1 h-4 w-1/2 rounded bg-slate-400"></div>
 
-      {/* Fake location */}
-      <div className="bg-gray-300 h-4 w-2/3 rounded"></div>
-
-      {/* Optional bottom bar */}
-      <div className="bg-gray-300 h-3 w-full rounded mt-auto"></div>
+      {/* Footer row */}
+      <div className="mt-1 flex items-center justify-between">
+        <div className="h-4 w-10 rounded bg-slate-400"></div>
+        <div className="h-4 w-12 rounded bg-slate-400"></div>
+      </div>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Slider from "./Slider";
 import Reload from "./Reload";
@@ -20,7 +20,7 @@ function Resmenu() {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `https://food-del-backend-xe66.onrender.com/api/menu/${id}`
+          `https://food-del-backend-xe66.onrender.com/api/menu/${id}`,
         );
         const json = await response.json();
         setMenu(json);
@@ -35,32 +35,32 @@ function Resmenu() {
 
   if (!menu) {
     return (
-      <div className="mt-16 sm:mt-[7em] flex justify-center items-center">
+      <div className="flex items-center justify-center">
         <Reload />
       </div>
     );
   }
 
   return (
-    <div className="mt-16 sm:mt-[7em]">
+    <div className="mt-8 p-1 sm:mt-[45px]">
       {/* Restaurant Info */}
-      <div className="bg-slate-100 m-auto max-w-screen-md sm:w-4/5 rounded-lg p-2 sm:px-4 flex justify-between animate-fade-in">
-        <div className="flex flex-col justify-evenly">
-          <h1 className="text-2xl sm:text-4xl font-semibold">
+      <div className="text m-4 mx-auto flex max-w-4xl justify-between rounded-lg bg-slate-200 sm:w-[90%] md:w-4/5">
+        <div className="flex flex-col justify-evenly p-2">
+          <h1 className="text-xl font-semibold sm:text-3xl">
             {restaurantInfo.name || "Restaurant Name"}
           </h1>
-          <h3 className="text-sm sm:text-base text-gray-700">
+          <h3 className="text-xs text-gray-700 sm:text-base">
             {restaurantInfo.cuisines?.join(", ") || "Cuisine info"}
           </h3>
-          <div className="flex items-center font-semibold gap-6 sm:gap-7 mt-2">
-            <div className="flex gap-1 items-center">
-              <h3 className="text-sm sm:text-base">
+          <div className="mt-2 flex items-center gap-6 font-semibold sm:gap-7">
+            <div className="flex items-center gap-1">
+              <h3 className="text-xs sm:text-base">
                 {restaurantInfo.avgRating ?? "--"}
               </h3>
               <img className="h-5" src={img1} alt="Rating star" />
             </div>
             <div>
-              <h3 className="text-xs sm:text-base text-gray-600">
+              <h3 className="text-xs text-gray-600 sm:text-base">
                 {restaurantInfo.costForTwoMessage ?? "--"}
               </h3>
             </div>
@@ -77,9 +77,9 @@ function Resmenu() {
             </div>
           </div>
         </div>
-        <div className="p-1 flex justify-center items-center transition-all">
+        <div className="flex items-center justify-center p-1 transition-all">
           <img
-            className="w-full block h-full min-w-[100px] max-w-40 rounded-lg"
+            className="block h-full w-full min-w-[100px] max-w-40 rounded-lg"
             src={
               restaurantInfo.cloudinaryImageId
                 ? `https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/${restaurantInfo.cloudinaryImageId}`
@@ -91,7 +91,7 @@ function Resmenu() {
       </div>
 
       {/* Menu Cards */}
-      <div className="mt-6">
+      <div className="">
         {cards.filter((card) => card.card.card.itemCards).length > 0 ? (
           cards.map((e, index) => {
             if (e.card.card.itemCards) {
@@ -100,7 +100,7 @@ function Resmenu() {
             return null;
           })
         ) : (
-          <div className="text-center text-lg text-gray-600 mt-10">
+          <div className="mt-10 text-center text-lg text-gray-600">
             No menu items available.
           </div>
         )}

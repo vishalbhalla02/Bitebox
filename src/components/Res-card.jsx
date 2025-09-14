@@ -1,4 +1,3 @@
-import React from "react";
 import img1 from "../images/star.png";
 
 function ResCard({ name, img_id, rating, time, areaName }) {
@@ -7,19 +6,19 @@ function ResCard({ name, img_id, rating, time, areaName }) {
     : "https://via.placeholder.com/250x250?text=Image+Unavailable";
 
   return (
-    <div className="shadow-lg rounded-xl w-72 h-96 bg-slate-100 p-4 flex flex-col justify-between transition-all duration-200 hover:bg-slate-200 hover:scale-[1.02]">
+    <div className="flex w-full max-w-40 flex-col justify-between rounded-xl bg-slate-300 p-4 shadow-lg transition-all duration-200 hover:scale-[1.02] hover:bg-slate-200 sm:max-w-60 md:max-w-72">
       <img
-        className="rounded-lg w-full h-64 object-cover"
+        className="h-full w-full rounded-lg object-cover"
         src={imageUrl}
         alt={name}
         loading="lazy"
       />
-      <h3 className="font-bold text-lg whitespace-nowrap overflow-hidden text-ellipsis mt-2">
+      <h3 className="mt-2 overflow-hidden text-ellipsis whitespace-nowrap text-lg font-bold">
         {name}
       </h3>
-      <p className="text-sm text-gray-600 truncate">{areaName}</p>
-      <div className="flex justify-between items-center font-semibold mt-1">
-        <div className="flex gap-1 items-center">
+      <p className="truncate text-sm text-gray-600">{areaName}</p>
+      <div className="mt-1 flex items-center justify-between font-semibold">
+        <div className="flex items-center gap-1">
           <span>{rating ?? "--"}</span>
           <img className="h-[18px]" src={img1} alt="Rating star" />
         </div>
