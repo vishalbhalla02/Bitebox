@@ -19,8 +19,8 @@ function Resmenu() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          `https://food-del-backend-xe66.onrender.com/api/menu/${id}`,
+        const response = await fetch( // `https://food-del-backend-xe66.onrender.com/api/menu/${id}`
+          `https://foodfire.onrender.com/api/menu?page-type=REGULAR_MENU&complete-menu=true&lat=21.1702401&lng=72.83106070000001&submitAction=ENTER&restaurantId=${id}`,
         );
         const json = await response.json();
         setMenu(json);

@@ -19,8 +19,8 @@ function RestaurantContainer() {
 
   const fetchData = async () => {
     try {
-      const data = await fetch(
-        "https://food-del-backend-xe66.onrender.com/api",
+      const data = await fetch( //  "https://food-del-backend-xe66.onrender.com/api",
+        "https://foodfire.onrender.com/api/restaurants?lat=21.1702401&lng=72.83106070000001&page_type=DESKTOP_WEB_LISTING",
       );
       const json = await data.json();
       const restaurants =
@@ -71,7 +71,7 @@ function RestaurantContainer() {
                   img_id={res.info.cloudinaryImageId}
                   rating={res.info.avgRating}
                   time={res.info.sla.deliveryTime}
-                  areaname={res.info.areaName}
+                  areaName={res.info.areaName}
                 />
               </Link>
             ))
