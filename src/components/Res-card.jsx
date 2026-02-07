@@ -6,9 +6,9 @@ function ResCard({ name, img_id, rating, time, areaName }) {
     : "https://via.placeholder.com/250x250?text=Image+Unavailable";
 
   return (
-    <div className="flex w-full max-w-40 flex-col justify-between rounded-xl bg-slate-300 p-4 shadow-lg transition-all duration-200 hover:scale-[1.02] hover:bg-slate-200 sm:max-w-60 md:max-w-72">
+    <div className="w-56 flex flex-col justify-between rounded-xl bg-slate-300 p-4 shadow-lg transition-all duration-200 hover:scale-[1.02] hover:bg-slate-200 sm:w-64 md:w-72">
       <img
-        className="h-full w-full rounded-lg object-cover"
+        className="h-40 w-full rounded-lg object-cover sm:h-44 md:h-48"
         src={imageUrl}
         alt={name}
         loading="lazy"
